@@ -26,13 +26,7 @@ var App = {
                             text: text
                         }
                     }).done(function(response){
-                        // console.log('ok');
-                        $('#status').text(response)/*.fadeOut(
-                         2000,
-                         function(){
-                         $('#status').text('').show();
-                         });*/
-
+                        $('#status').text(response)
                     });
 
                 });
@@ -52,8 +46,7 @@ var App = {
                     id: id
                 }
             }).done(function(response){
-                var recordsList = App.sliceString(response, '<img');
-                $('#detailsContainer').text(recordsList);
+                $('#detailsContainer').text(response);
             });
         });
     },
@@ -87,7 +80,10 @@ var App = {
             $('#site').css(commonStyle);
         }
 
-        var textEmpty = (type === 'text' && $('#textField').val() === '');
+        var textEmpty = (
+            type === 'text' 
+            && $('#textField').val() === ''
+        );
 
         if(textEmpty) {
             $('#textField').css(alertStyle)

@@ -28,6 +28,8 @@ class FindController
 
         if(!$this->validates()) {
             $this->status = 'Не прошли валидацию';
+            echo $this->status;
+            return;
         }
         
         $model = new FindModel();

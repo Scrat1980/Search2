@@ -21,6 +21,9 @@ class FindModel
         $this->text = $text;
 
         $page = $this->getPage();
+        if(! $page) {
+            return false;
+        }
         $record = $this->extractElementsFromPage($page);
         $db = new Db();
         $db->insert($record);
@@ -30,6 +33,14 @@ class FindModel
 
     private function getPage()
     {
+        $headers = get_headers($this->site);
+        $siteIsValid = $headers 
+            && isset($headers[0]) 
+            && $headers[0] === 'HTTP/1.1 200 Ok';
+        if(! $siteIsValid) {
+            return false;
+        }
+
         $curlHandler = curl_init();
         curl_setopt_array(
             $curlHandler,
