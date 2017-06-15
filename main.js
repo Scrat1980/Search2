@@ -3,13 +3,13 @@
  */
 
 $( document ).ready(function() {
-    App.index();
+    App.find();
     App.loadElements();
 
 });
 
 var App = {
-    index: function(){
+    find: function(){
         $('#submit').on('click', function (e) {
                 e.preventDefault();
                 var site = $('#site').val();
@@ -37,14 +37,34 @@ var App = {
 
     loadElements: function(){
         $('.result').on('click', function(e){
+            e.preventDefault();
             var id = $(this).attr('data-id');
-            console.log(id);
             $.ajax({
                 url: '/index.php?page=details',
-                data: id
+                data: {
+                    id: id
+                }
             }).done(function(response){
-
+                var recordsList = App.sliceString(response, '<img');
+                $('#detailsContainer').text(recordsList);
             });
         });
+    },
+
+    sliceString: function(string, delimiter){
+        var list = string.split(delimiter);
+        for(var index in list){
+            if (index != 0) {
+                list[index] = delimiter + list[index];
+            }
+        }
+
+        if(list[0] === ""){
+            delete list[0];
+        }
+
+        return list;
     }
+
+
 };

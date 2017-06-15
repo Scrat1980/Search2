@@ -29,7 +29,7 @@ class FindController
         if(!$this->validates()) {
             $this->status = 'Не прошли валидацию';
         }
-die('here');
+        
         $model = new FindModel();
         $resultCorrect = $model->getDataFromSite(
             $this->site,
@@ -42,11 +42,6 @@ die('here');
         }
 
         echo $this->status;
-    }
-
-    public function details()
-    {
-        
     }
 
     private function validates()

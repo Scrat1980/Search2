@@ -29,4 +29,13 @@ class ResultsModel
         return $resultsList;
     }
 
+    public function getElementsById($id)
+    {
+        $db = new Db();
+        $elementsQuery = "SELECT elements, site FROM searches WHERE id = '$id'";
+        $elements = $db->query($elementsQuery);
+        
+        return $elements;
+    }
+
 }

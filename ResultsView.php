@@ -29,8 +29,13 @@ class ResultsView
                 $view .=
                     "<tr>
                         <td>$site[0]</td>
-                        <td><a href='' data-id='$site[2]' class='result'>
-                        $site[1]</a></td>
+                        <td>
+                            <a href='' 
+                                data-id='$site[2]' 
+                                class='result'
+                            >
+                        $site[1]</a>
+                        </td>
                     </tr>";
             }
         }

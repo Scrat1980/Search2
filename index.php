@@ -21,7 +21,7 @@ $rout = [
         'action' => 'index',
     ],
     'details' => [
-        'controller' => 'FindController',
+        'controller' => 'ResultsController',
         'action' => 'details'
     ]
 ];

@@ -22,7 +22,6 @@ class FindModel
 
         $page = $this->getPage();
         $record = $this->extractElementsFromPage($page);
-
         $db = new Db();
         $db->insert($record);
 
