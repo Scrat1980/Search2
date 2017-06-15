@@ -17,22 +17,26 @@ var App = {
                 var type = $('#type').val();
                 var text = $('#textField').val();
 
-                $.ajax({
-                    url: '/index.php?page=ajax',
-                    data: {
-                        site: site,
-                        type: type,
-                        text: text
-                    }
-                }).done(function(response){
-                    // console.log('ok');
-                    $('#status').text(response)/*.fadeOut(
-                        2000,
-                        function(){
-                            $('#status').text('').show();
-                        });*/
+                App.validateInput(site, type, text, function(){
+                    $.ajax({
+                        url: '/index.php?page=ajax',
+                        data: {
+                            site: site,
+                            type: type,
+                            text: text
+                        }
+                    }).done(function(response){
+                        // console.log('ok');
+                        $('#status').text(response)/*.fadeOut(
+                         2000,
+                         function(){
+                         $('#status').text('').show();
+                         });*/
+
+                    });
 
                 });
+
             }
         );
 
@@ -62,6 +66,36 @@ var App = {
                 $('#textDiv').hide();
             }
         })
+    },
+
+    validateInput: function(site, type, text, callback){
+        var alertStyle = {
+            "border-color": "red",
+            "border-width":"2px",
+            "border-style":"solid"
+        };
+
+        var commonStyle = {
+            "border-color": "grey",
+            "border-width":"1px",
+            "border-style":"solid"
+        };
+
+        if(site === ''){
+            $('#site').css(alertStyle);
+        } else {
+            $('#site').css(commonStyle);
+        }
+
+        var textEmpty = (type === 'text' && $('#textField').val() === '');
+
+        if(textEmpty) {
+            $('#textField').css(alertStyle)
+        } else {
+            $('#textField').css(commonStyle)
+        }
+
+        callback(site, type, text);
     },
 
     sliceString: function(string, delimiter){
