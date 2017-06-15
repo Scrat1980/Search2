@@ -7,7 +7,7 @@
  * Time: 15:08
  */
 
-class SearchView
+class FindView
 {
     private $links =
         "</a></p>"
@@ -26,6 +26,12 @@ class SearchView
                 <option value='image'>Изображение</option>
                 <option value='text'>Текст</option>
             </select><br>
+            
+            <div id='textDiv' style='display:none'>
+                <label for='textField'>Введите текст для поиска</label>
+                <input id='textField' type='text'><br>
+            </div>
+            
             <input id='submit' type='submit'>                
                 
         </form>";

@@ -11,8 +11,7 @@ class SiteController
 {
     public function search()
     {
-//        $model = new SearchModel();
-        $view = new SearchView();
+        $view = new FindView();
         $this->render($view);
     }
 

@@ -3,6 +3,7 @@
  */
 
 $( document ).ready(function() {
+    App.manageTextField();
     App.find();
     App.loadElements();
 
@@ -14,12 +15,14 @@ var App = {
                 e.preventDefault();
                 var site = $('#site').val();
                 var type = $('#type').val();
+                var text = $('#textField').val();
 
                 $.ajax({
                     url: '/index.php?page=ajax',
                     data: {
                         site: site,
-                        type: type
+                        type: type,
+                        text: text
                     }
                 }).done(function(response){
                     // console.log('ok');
@@ -49,6 +52,16 @@ var App = {
                 $('#detailsContainer').text(recordsList);
             });
         });
+    },
+
+    manageTextField: function(){
+        $('#type').on('change', function(){
+            if($('#type').val() === 'text'){
+                $('#textDiv').show();
+            } else {
+                $('#textDiv').hide();
+            }
+        })
     },
 
     sliceString: function(string, delimiter){
